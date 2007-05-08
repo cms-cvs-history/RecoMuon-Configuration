@@ -4,10 +4,15 @@
 # Seed generator
 include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeeds.cff"
 
-# Stand alone muon producer
+# Stand alone muon track producer
 include "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cff"
 
-# Global muon producer
+# Global muon track producer
 include "RecoMuon/GlobalMuonProducer/data/GlobalMuonProducer.cff"
 
-sequence muonreco = {MuonSeed, standAloneMuons, globalMuons}
+sequence muontracking = {MuonSeed, standAloneMuons, globalMuons}
+
+# Muon Id producer
+include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
+
+sequence muonreco = {muontracking,muonIdProducerSequence}
