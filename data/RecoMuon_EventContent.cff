@@ -9,6 +9,7 @@ block RecoMuonFEVT = {
 	"keep *_globalMuons_*_*",
 # Muon Id
 	"keep *_muonsWithMatchInfo_*_*",
+	"keep *_muons_*_*",
 # Tracker
 	"keep *_ctfWithMaterialTracks_*_*",
 	"keep *_rsWithMaterialTracks_*_*"
@@ -24,6 +25,7 @@ block RecoMuonRECO = {
 	"keep *_globalMuons_*_*",
 # Muon Id
 	"keep *_muonsWithMatchInfo_*_*",
+	"keep *_muons_*_*",
 # Tracker
 	"keep *_ctfWithMaterialTracks_*_*",
 	"keep *_rsWithMaterialTracks_*_*"
@@ -40,6 +42,7 @@ block RecoMuonAOD = {
 	"keep recoMuons_globalMuons_*_*",
 # Muon Id
 	"keep recoMuons_muonsWithMatchInfo_*_*",
+	"keep *_muons_*_*",
 # Tracker's Tracks without extra and hits
 	"keep recoTracks_ctfWithMaterialTracks_*_*",
 	"keep recoTracks_rsWithMaterialTracks_*_*"
