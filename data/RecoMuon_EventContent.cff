@@ -12,7 +12,7 @@ block RecoMuonFEVT = {
 	"keep *_muons_*_*",
 # Tracker
 	"keep *_ctfWithMaterialTracks_*_*",
-	"keep *_rsWithMaterialTracks_*_*"
+	"keep *_rsWithMaterialTracks_*_*",
     }		
 }	
 
@@ -48,3 +48,11 @@ block RecoMuonAOD = {
 	"keep recoTracks_rsWithMaterialTracks_*_*"
     }
 }
+
+#Add Isolation
+
+include "RecoMuon/MuonIsolationProducers/data/muIsolation_EventContent.cff"
+
+replace RecoMuonFEVT.outputCommands += RecoMuonIsolationFEVT.outputCommands
+replace RecoMuonRECO.outputCommands += RecoMuonIsolationRECO.outputCommands
+replace RecoMuonAOD.outputCommands += RecoMuonIsolationAOD.outputCommands 

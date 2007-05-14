@@ -16,3 +16,17 @@ sequence muontracking = {MuonSeed, standAloneMuons, globalMuons}
 include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
 
 sequence muonreco = {muontracking,muonIdProducerSequence}
+
+#seqs/mods to make MuIsoDeposits
+include "RecoMuon/MuonIsolationProducers/data/muIsoDeposits.cff"
+
+#seqs/mods to make sums (cones 0.2, 0.3, 0.4, 0.7)
+include "RecoMuon/MuonIsolationProducers/data/muIsolationSumInCones.cff"
+
+# full suggested isolation seq
+sequence muIsolation = { (muIsoDepositsTk , muIsolationSumsTk)
+    & ( muIsoDepositCalByAssociatorTowers , muIsolationSumsAssocTowers ) }
+
+#muon reconstruction plus isolation information
+sequence muonreco_plus_isolation = {muonreco,muIsolation}
+
