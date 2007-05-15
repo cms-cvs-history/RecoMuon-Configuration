@@ -12,7 +12,7 @@ block RecoMuonFEVT = {
 	"keep *_muons_*_*",
 # Tracker
 	"keep *_ctfWithMaterialTracks_*_*",
-	"keep *_rsWithMaterialTracks_*_*",
+	"keep *_rsWithMaterialTracks_*_*"
     }		
 }	
 
