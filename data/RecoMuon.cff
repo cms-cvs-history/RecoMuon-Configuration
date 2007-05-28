@@ -1,9 +1,6 @@
 # All the services like the magnitc field, the geometries and so on are included
 # in the *.cff
 
-# Muon Numbering
-include "Geometry/MuonNumbering/data/muonNumberingInitialization.cfi"
-
 # Seed generator
 include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeeds.cff"
 
