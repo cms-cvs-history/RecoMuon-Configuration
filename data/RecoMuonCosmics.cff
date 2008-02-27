@@ -1,0 +1,35 @@
+# All the services like the magnitc field, the geometries and so on are included
+# in the *.cff
+
+include "RecoMuon/StandAloneMuonProducer/data/standAloneCosmicMuons.cff"
+
+# Seed generator
+include "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
+
+# Stand alone muon track producer
+include "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cff"
+
+# Global muon track producer
+# include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cff"
+
+sequence muontrackingforcosmics = {CosmicMuonSeed, cosmicMuons}
+
+# Muon Id producer
+include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
+replace muons.inputCollectionLabels = {cosmicMuons}
+replace muons.inputCollectionTypes = {"outer tracks"}
+replace muons.fillIsolation = false
+
+sequence muonrecoforcosmics = {muontrackingforcosmics, muons}
+
+# Muon Isolation sequence
+#include "RecoMuon/MuonIsolationProducers/data/muIsolation.cff"
+
+#
+# Muon Reconstruction plus Isolation
+#sequence muonrecoforcosmics_plus_isolation = {muonrecoforcosmics,muIsolation}
+
+
+####### Alternative cosmic muon reconstruction
+
+#
