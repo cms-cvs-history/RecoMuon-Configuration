@@ -10,7 +10,7 @@ include "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
 include "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cff"
 
 # Global muon track producer
-# include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
+# include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cff"
 
 sequence muontrackingforcosmics = {CosmicMuonSeed, cosmicMuons}
 
@@ -25,5 +25,11 @@ sequence muonrecoforcosmics = {muontrackingforcosmics, muons}
 # Muon Isolation sequence
 #include "RecoMuon/MuonIsolationProducers/data/muIsolation.cff"
 
+#
 # Muon Reconstruction plus Isolation
 #sequence muonrecoforcosmics_plus_isolation = {muonrecoforcosmics,muIsolation}
+
+
+####### Alternative cosmic muon reconstruction
+
+#
