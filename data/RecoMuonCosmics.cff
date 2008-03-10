@@ -7,7 +7,7 @@ include "RecoMuon/StandAloneMuonProducer/data/standAloneCosmicMuons.cff"
 include "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
 
 # Stand alone muon track producer
-include "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cff"
+include "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 
 # Global muon track producer
 # include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cff"
