@@ -11,7 +11,7 @@ include "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cff"
 
 # Global muon track producer
 include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cff"
-replace globalCosmicMuons.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctftracksP5" 
+replace globalCosmicMuons.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
 
 sequence STAmuontrackingforcosmics = {CosmicMuonSeed, cosmicMuons}
 sequence muontrackingforcosmics = {STAmuontrackingforcosmics, globalCosmicMuons}
@@ -23,17 +23,17 @@ replace muons.inputCollectionLabels = {ctftracksP5, globalCosmicMuons, cosmicMuo
 replace muons.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
 replace muons.fillIsolation = false
 
-module STAMuons = MuonIdProducer from "RecoMuon/MuonIdentification/data/muons.cfi"
+module STAMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace STAMuons.inputCollectionLabels = {cosmicMuons}
 replace STAMuons.inputCollectionTypes = {"outer tracks"}
 replace STAMuons.fillIsolation = false
 
-module TKMuons = MuonIdProducer from "RecoMuon/MuonIdentification/data/muons.cfi"
+module TKMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace TKMuons.inputCollectionLabels = {ctftracksP5}
 replace TKMuons.inputCollectionTypes = { "inner tracks"}
 replace TKMuons.fillIsolation = false
 
-module GLBMuons = MuonIdProducer from "RecoMuon/MuonIdentification/data/muons.cfi"
+module GLBMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace GLBMuons.inputCollectionLabels = {globalCosmicMuons}
 replace GLBMuons.inputCollectionTypes = {"links"}
 replace GLBMuons.fillIsolation = false
