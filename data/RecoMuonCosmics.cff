@@ -19,7 +19,7 @@ sequence muontrackingforcosmics = {STAmuontrackingforcosmics, globalCosmicMuons}
 # Muon Id producer
 include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
 
-replace muons.inputCollectionLabels = {ctftracksP5, globalCosmicMuons, cosmicMuons}
+replace muons.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons, cosmicMuons}
 replace muons.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
 replace muons.fillIsolation = false
 
@@ -29,7 +29,7 @@ replace STAMuons.inputCollectionTypes = {"outer tracks"}
 replace STAMuons.fillIsolation = false
 
 module TKMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
-replace TKMuons.inputCollectionLabels = {ctftracksP5}
+replace TKMuons.inputCollectionLabels = {ctfWithMaterialTracksP5}
 replace TKMuons.inputCollectionTypes = { "inner tracks"}
 replace TKMuons.fillIsolation = false
 
