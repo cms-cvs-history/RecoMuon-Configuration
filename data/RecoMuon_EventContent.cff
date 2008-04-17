@@ -21,6 +21,8 @@ block RecoMuonAOD = {
 # RECO content
 block RecoMuonRECO = {
     untracked vstring outputCommands = {
+	# Seed
+	"keep *_MuonSeed_*_*"
     }	
 }	
 replace RecoMuonRECO.outputCommands += RecoMuonAOD.outputCommands
@@ -28,8 +30,6 @@ replace RecoMuonRECO.outputCommands += RecoMuonAOD.outputCommands
 # Full Event content 
 block RecoMuonFEVT = {
     untracked vstring outputCommands = {
-# Seed
-	"keep *_MuonSeed_*_*"
     }		
 }	
 replace RecoMuonFEVT.outputCommands += RecoMuonRECO.outputCommands
