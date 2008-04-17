@@ -10,39 +10,17 @@ include "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
 include "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cff"
 
 # Global muon track producer
-include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cff"
-replace globalCosmicMuons.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
+# include "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cff"
 
-sequence STAmuontrackingforcosmics = {CosmicMuonSeed, cosmicMuons}
-sequence muontrackingforcosmics = {STAmuontrackingforcosmics, globalCosmicMuons}
+sequence muontrackingforcosmics = {CosmicMuonSeed, cosmicMuons}
 
 # Muon Id producer
 include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
-
-replace muons.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons, cosmicMuons}
-replace muons.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
+replace muons.inputCollectionLabels = {cosmicMuons}
+replace muons.inputCollectionTypes = {"outer tracks"}
 replace muons.fillIsolation = false
 
-module STAMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
-replace STAMuons.inputCollectionLabels = {cosmicMuons}
-replace STAMuons.inputCollectionTypes = {"outer tracks"}
-replace STAMuons.fillIsolation = false
-
-module TKMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
-replace TKMuons.inputCollectionLabels = {ctfWithMaterialTracksP5}
-replace TKMuons.inputCollectionTypes = { "inner tracks"}
-replace TKMuons.fillIsolation = false
-
-module GLBMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
-replace GLBMuons.inputCollectionLabels = {globalCosmicMuons}
-replace GLBMuons.inputCollectionTypes = {"links"}
-replace GLBMuons.fillIsolation = false
-
-sequence allmuons = {muons,STAMuons,TKMuons,GLBMuons}
-
-sequence muonrecoforcosmics = {muontrackingforcosmics, allmuons}
-sequence STAmuonrecoforcosmics = {STAmuontrackingforcosmics, STAMuons}
-
+sequence muonrecoforcosmics = {muontrackingforcosmics, muons}
 
 # Muon Isolation sequence
 #include "RecoMuon/MuonIsolationProducers/data/muIsolation.cff"
