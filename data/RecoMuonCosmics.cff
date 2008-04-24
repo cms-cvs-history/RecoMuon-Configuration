@@ -54,4 +54,74 @@ sequence STAmuonrecoforcosmics = {STAmuontrackingforcosmics, STAMuons}
 
 ####### Alternative cosmic muon reconstruction
 
-#
+
+### Temp sequences until the endcaps are not close to the barrel  ###
+
+
+# Only barrel
+
+module CosmicMuonSeedBarrelOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
+replace CosmicMuonSeedBarrelOnly.EnableCSCMeasurement = false
+
+module cosmicMuonsBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
+replace cosmicMuonsBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false 
+
+module globalCosmicMuonsBarrelOnly = globalCosmicMuons from "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
+replace globalCosmicMuonsBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
+replace globalCosmicMuonsBarrelOnly.MuonCollectionLabel = "cosmicMuonsBarrelOnly" 
+
+sequence STAmuontrackingforcosmicsBarrelOnly = {CosmicMuonSeedBarrelOnly, cosmicMuonsBarrelOnly}
+sequence muontrackingforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly, globalCosmicMuonsBarrelOnly}
+
+
+module STAMuonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace STAMuonsBarrelOnly.inputCollectionLabels = {cosmicMuonsBarrelOnly}
+replace STAMuonsBarrelOnly.inputCollectionTypes = {"outer tracks"}
+replace STAMuonsBarrelOnly.fillIsolation = false
+
+
+module GLBMuonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace GLBMuonsBarrelOnly.inputCollectionLabels = {globalCosmicMuonsBarrelOnly}
+replace GLBMuonsBarrelOnly.inputCollectionTypes = {"links"}
+replace GLBMuonsBarrelOnly.fillIsolation = false
+
+
+replace muonsBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuonsBarrelOnly, cosmicMuonsBarrelOnly}
+replace muonsBarrelOnly.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
+replace muonsBarrelOnly.fillIsolation = false
+
+
+sequence allmuonsBarrelOnly = {muonsBarrelOnly,STAMuonsBarrelOnly, GLBMuonsBarrelOnly}
+
+sequence muonrecoforcosmicsBarrelOnly = {muontrackingforcosmicsBarrelOnly, allmuonsBarrelOnly}
+sequence STAmuonrecoforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly, STAMuonsBarrelOnly}
+
+
+
+# Only endcaps
+
+module CosmicMuonSeedEndCapsOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi" 
+replace CosmicMuonSeedEndCapsOnly.EnableDTMeasurement = false 
+
+module cosmicMuonsEndCapsOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
+replace cosmicMuonsEndCapsOnly.TrajectoryBuilderParameters.EnableDTMeasurement = false 
+
+
+sequence STAmuontrackingforcosmicsEnsCapsOnly = {CosmicMuonSeedEndCapsOnly, cosmicMuonsEndCapsOnly}
+sequence muontrackingforcosmicsEndCapsOnly = {STAmuontrackingforcosmicsEnsCapsOnly}
+
+
+module STAMuonsEndCapsOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace STAMuonsEndCapsOnly.inputCollectionLabels = {cosmicMuonsEndCapsOnly}
+replace STAMuonsEndCapsOnly.inputCollectionTypes = {"outer tracks"}
+replace STAMuonsEndCapsOnly.fillIsolation = false
+
+
+
+sequence allmuonsEndCapsOnly = {STAMuonsEndCapsOnly}
+
+sequence muonrecoforcosmicsEndCapsOnly = {muontrackingforcosmicsEndCapsOnly, allmuonsEndCapsOnly}
+sequence STAmuonrecoforcosmicsEndCapsOnly = {STAmuontrackingforcosmicsEnsCapsOnly, STAMuonsEndCapsOnly}
+
+
+
