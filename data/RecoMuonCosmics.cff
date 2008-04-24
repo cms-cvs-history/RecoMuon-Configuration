@@ -85,13 +85,13 @@ replace GLBMuonsBarrelOnly.inputCollectionLabels = {globalCosmicMuonsBarrelOnly}
 replace GLBMuonsBarrelOnly.inputCollectionTypes = {"links"}
 replace GLBMuonsBarrelOnly.fillIsolation = false
 
-
+module muonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace muonsBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuonsBarrelOnly, cosmicMuonsBarrelOnly}
 replace muonsBarrelOnly.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
 replace muonsBarrelOnly.fillIsolation = false
 
 
-sequence allmuonsBarrelOnly = {muonsBarrelOnly,STAMuonsBarrelOnly, GLBMuonsBarrelOnly}
+sequence allmuonsBarrelOnly = {muonsBarrelOnly, STAMuonsBarrelOnly, GLBMuonsBarrelOnly}
 
 sequence muonrecoforcosmicsBarrelOnly = {muontrackingforcosmicsBarrelOnly, allmuonsBarrelOnly}
 sequence STAmuonrecoforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly, STAMuonsBarrelOnly}
