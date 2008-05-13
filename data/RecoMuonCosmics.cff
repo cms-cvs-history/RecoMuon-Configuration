@@ -194,14 +194,14 @@ sequence lhcMuonReco = {lhcMuonBarrelOnly, lhcMuonEndCapsOnly}
 
 module CosmicMuonSeedNoDriftBarrelOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
 replace CosmicMuonSeedNoDriftBarrelOnly.EnableCSCMeasurement = false
-replace CosmicMuonSeedNoDriftBarrelOnly.CosmicMuonSeed = "dt4DSegmentsNoDrift"
+replace CosmicMuonSeedNoDriftBarrelOnly.DTRecSegmentLabel = dt4DSegmentsNoDrift
 
 
 module cosmicMuonsNoDriftBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false 
 replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.BuildTraversingMuon = true 
 replace cosmicMuonsNoDriftBarrelOnly.MuonSeedCollectionLabel = "CosmicMuonSeedNoDriftBarrelOnly"
-replace cosmicMuonsNoDriftBarrelOnly.DTRecSegmentLabel = "dt4DSegmentsNoDrift"
+replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.DTRecSegmentLabel = dt4DSegmentsNoDrift
 
 module globalCosmicMuonsNoDriftBarrelOnly = globalCosmicMuons from "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
 replace globalCosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
