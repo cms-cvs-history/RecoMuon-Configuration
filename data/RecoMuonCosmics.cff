@@ -87,7 +87,7 @@ replace GLBMuonsBarrelOnly.fillIsolation = false
 
 module muonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace muonsBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuonsBarrelOnly, cosmicMuonsBarrelOnly}
-replace muonsBarrelOnly.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
+replace muonsBarrelOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
 replace muonsBarrelOnly.fillIsolation = false
 
 
@@ -125,3 +125,62 @@ sequence STAmuonrecoforcosmicsEndCapsOnly = {STAmuontrackingforcosmicsEnsCapsOnl
 
 
 
+# Only barrel 1 leg mode
+
+module cosmicMuons1LegBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
+replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false 
+replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.BuildTraversingMuon = true 
+
+module globalCosmicMuons1LegBarrelOnly = globalCosmicMuons from "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
+replace globalCosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
+replace globalCosmicMuons1LegBarrelOnly.MuonCollectionLabel = "cosmicMuons1LegBarrelOnly" 
+
+sequence STAmuontrackingforcosmicsBarrelOnly = {CosmicMuonSeedBarrelOnly, cosmicMuons1LegBarrelOnly}
+sequence muontrackingforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly, globalCosmicMuons1LegBarrelOnly}
+
+
+module STAMuons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace STAMuons1LegBarrelOnly.inputCollectionLabels = {cosmicMuons1LegBarrelOnly}
+replace STAMuons1LegBarrelOnly.inputCollectionTypes = {"outer tracks"}
+replace STAMuons1LegBarrelOnly.fillIsolation = false
+
+
+module GLBMuons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace GLBMuons1LegBarrelOnly.inputCollectionLabels = {globalCosmicMuons1LegBarrelOnly}
+replace GLBMuons1LegBarrelOnly.inputCollectionTypes = {"links"}
+replace GLBMuons1LegBarrelOnly.fillIsolation = false
+
+module muons1LegsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace muonsBarrel1LegsOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons1LegBarrelOnly, cosmicMuons1LegBarrelOnly}
+replace muonsBarrel1LegsOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
+replace muonsBarrel1LegsOnly.fillIsolation = false
+
+
+sequence allmuonsBarrelOnly = {muons1LegBarrelOnly, STAMuons1LegBarrelOnly, GLBMuons1LegBarrelOnly}
+
+sequence muonrecoforcosmics1LegBarrelOnly = {muontrackingforcosmics1LegBarrelOnly, allmuons1LegBarrelOnly}
+sequence STAmuonrecoforcosmics1LegBarrelOnly = {STAmuontrackingforcosmics1LegBarrelOnly, STAMuons1LegBarrelOnly}
+
+
+# Standard reco
+include "RecoMuon/Configuration/data/RecoMuon.cff"
+
+module lhcMuonSeedBarrelOnly = MuonSeed from "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeedProducer.cfi"
+replace lhcMuonSeedBarrelOnly.EnableCSCMeasurement = false
+
+module lhcStandAloneMuonsBarrelOnly = standAloneMuons from "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cfi"
+replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.RefitterParameters.EnableCSCMeasurement = false
+replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.BWFilterParameters.EnableCSCMeasurement = false
+
+sequence lhcMuonBarrelOnly = {lhcMuonSeedBarrelOnly, lhcStandAloneMuonsBarrelOnly}
+
+module lhcMuonSeedEndCapsOnly = MuonSeed from "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeedProducer.cfi"
+replace lhcMuonSeedEndCapsOnly.EnableDTMeasurement = false
+
+module lhcStandAloneMuonsEndCapsOnly = standAloneMuons from "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cfi"
+replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.RefitterParameters.EnableDTMeasurement = false
+replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.BWFilterParameters.EnableDTMeasurement = false
+
+sequence lhcMuonEndCapsOnly = {lhcMuonSeedEndCapsOnly, lhcStandAloneMuonsEndCapsOnly}
+
+sequence lhcMuonReco = {lhcMuonBarrelOnly, lhcMuonEndCapsOnly}
