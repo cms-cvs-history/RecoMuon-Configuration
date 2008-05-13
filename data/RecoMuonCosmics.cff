@@ -188,3 +188,47 @@ replace lhcStandAloneMuonsEndCapsOnly.InputObjects = lhcMuonSeedEndCapsOnly
 sequence lhcMuonEndCapsOnly = {lhcMuonSeedEndCapsOnly, lhcStandAloneMuonsEndCapsOnly}
 
 sequence lhcMuonReco = {lhcMuonBarrelOnly, lhcMuonEndCapsOnly}
+
+
+# Only barrel No drift
+
+module CosmicMuonSeedNoDriftBarrelOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi"
+replace CosmicMuonSeedNoDriftBarrelOnly.EnableCSCMeasurement = false
+replace CosmicMuonSeedNoDriftBarrelOnly.CosmicMuonSeed = "dt4DSegmentsNoDrift"
+
+
+module cosmicMuonsNoDriftBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
+replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false 
+replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.BuildTraversingMuon = true 
+replace cosmicMuonsNoDriftBarrelOnly.MuonSeedCollectionLabel = "CosmicMuonSeedNoDriftBarrelOnly"
+replace cosmicMuonsNoDriftBarrelOnly.DTRecSegmentLabel = "dt4DSegmentsNoDrift"
+
+module globalCosmicMuonsNoDriftBarrelOnly = globalCosmicMuons from "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
+replace globalCosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
+replace globalCosmicMuonsNoDriftBarrelOnly.MuonCollectionLabel = "cosmicMuonsNoDriftBarrelOnly" 
+
+sequence STAmuontrackingforcosmicsNoDriftBarrelOnly = {CosmicMuonSeedBarrelOnly, cosmicMuonsNoDriftBarrelOnly}
+sequence muontrackingforcosmicsNoDriftBarrelOnly = {STAmuontrackingforcosmicsNoDriftBarrelOnly, globalCosmicMuonsNoDriftBarrelOnly}
+
+
+module STAMuonsNoDriftBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace STAMuonsNoDriftBarrelOnly.inputCollectionLabels = {cosmicMuonsNoDriftBarrelOnly}
+replace STAMuonsNoDriftBarrelOnly.inputCollectionTypes = {"outer tracks"}
+replace STAMuonsNoDriftBarrelOnly.fillIsolation = false
+
+
+module GLBMuonsNoDriftBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace GLBMuonsNoDriftBarrelOnly.inputCollectionLabels = {globalCosmicMuonsNoDriftBarrelOnly}
+replace GLBMuonsNoDriftBarrelOnly.inputCollectionTypes = {"links"}
+replace GLBMuonsNoDriftBarrelOnly.fillIsolation = false
+
+module muonsNoDriftBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace muonsNoDriftBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuonsNoDriftBarrelOnly, cosmicMuonsNoDriftBarrelOnly}
+replace muonsNoDriftBarrelOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
+replace muonsNoDriftBarrelOnly.fillIsolation = false
+
+
+sequence allmuonsNoDriftBarrelOnly = {muonsNoDriftBarrelOnly, STAMuonsNoDriftBarrelOnly, GLBMuonsNoDriftBarrelOnly}
+
+sequence muonrecoforcosmicsNoDriftBarrelOnly = {muontrackingforcosmicsNoDriftBarrelOnly, allmuonsNoDriftBarrelOnly}
+sequence STAmuonrecoforcosmicsNoDriftBarrelOnly = {STAmuontrackingforcosmicsNoDriftBarrelOnly, STAMuonsNoDriftBarrelOnly}
