@@ -64,7 +64,8 @@ module CosmicMuonSeedBarrelOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerato
 replace CosmicMuonSeedBarrelOnly.EnableCSCMeasurement = false
 
 module cosmicMuonsBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
-replace cosmicMuonsBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false 
+replace cosmicMuonsBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false
+replace cosmicMuonsBarrelOnly.MuonSeedCollectionLabel = "CosmicMuonSeedBarrelOnly"
 
 module globalCosmicMuonsBarrelOnly = globalCosmicMuons from "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
 replace globalCosmicMuonsBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
@@ -105,7 +106,7 @@ replace CosmicMuonSeedEndCapsOnly.EnableDTMeasurement = false
 
 module cosmicMuonsEndCapsOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuonsEndCapsOnly.TrajectoryBuilderParameters.EnableDTMeasurement = false 
-
+replace cosmicMuonsEndCapsOnly.MuonSeedCollectionLabel = "CosmicMuonSeedEndCapsOnly"
 
 sequence STAmuontrackingforcosmicsEnsCapsOnly = {CosmicMuonSeedEndCapsOnly, cosmicMuonsEndCapsOnly}
 sequence muontrackingforcosmicsEndCapsOnly = {STAmuontrackingforcosmicsEnsCapsOnly}
@@ -130,13 +131,14 @@ sequence STAmuonrecoforcosmicsEndCapsOnly = {STAmuontrackingforcosmicsEnsCapsOnl
 module cosmicMuons1LegBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false 
 replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.BuildTraversingMuon = true 
+replace cosmicMuons1LegBarrelOnly.MuonSeedCollectionLabel = "CosmicMuonSeedBarrelOnly"
 
 module globalCosmicMuons1LegBarrelOnly = globalCosmicMuons from "RecoMuon/CosmicMuonProducer/data/globalCosmicMuons.cfi"
 replace globalCosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
 replace globalCosmicMuons1LegBarrelOnly.MuonCollectionLabel = "cosmicMuons1LegBarrelOnly" 
 
-sequence STAmuontrackingforcosmicsBarrelOnly = {CosmicMuonSeedBarrelOnly, cosmicMuons1LegBarrelOnly}
-sequence muontrackingforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly, globalCosmicMuons1LegBarrelOnly}
+sequence STAmuontrackingforcosmics1LegBarrelOnly = {CosmicMuonSeedBarrelOnly, cosmicMuons1LegBarrelOnly}
+sequence muontrackingforcosmics1LegBarrelOnly = {STAmuontrackingforcosmics1LegBarrelOnly, globalCosmicMuons1LegBarrelOnly}
 
 
 module STAMuons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
@@ -150,13 +152,13 @@ replace GLBMuons1LegBarrelOnly.inputCollectionLabels = {globalCosmicMuons1LegBar
 replace GLBMuons1LegBarrelOnly.inputCollectionTypes = {"links"}
 replace GLBMuons1LegBarrelOnly.fillIsolation = false
 
-module muons1LegsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
-replace muonsBarrel1LegsOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons1LegBarrelOnly, cosmicMuons1LegBarrelOnly}
-replace muonsBarrel1LegsOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
-replace muonsBarrel1LegsOnly.fillIsolation = false
+module muons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
+replace muons1LegBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons1LegBarrelOnly, cosmicMuons1LegBarrelOnly}
+replace muons1LegBarrelOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
+replace muons1LegBarrelOnly.fillIsolation = false
 
 
-sequence allmuonsBarrelOnly = {muons1LegBarrelOnly, STAMuons1LegBarrelOnly, GLBMuons1LegBarrelOnly}
+sequence allmuons1LegBarrelOnly = {muons1LegBarrelOnly, STAMuons1LegBarrelOnly, GLBMuons1LegBarrelOnly}
 
 sequence muonrecoforcosmics1LegBarrelOnly = {muontrackingforcosmics1LegBarrelOnly, allmuons1LegBarrelOnly}
 sequence STAmuonrecoforcosmics1LegBarrelOnly = {STAmuontrackingforcosmics1LegBarrelOnly, STAMuons1LegBarrelOnly}
@@ -171,6 +173,7 @@ replace lhcMuonSeedBarrelOnly.EnableCSCMeasurement = false
 module lhcStandAloneMuonsBarrelOnly = standAloneMuons from "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cfi"
 replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.RefitterParameters.EnableCSCMeasurement = false
 replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.BWFilterParameters.EnableCSCMeasurement = false
+replace lhcStandAloneMuonsBarrelOnly.InputObjects = lhcMuonSeedBarrelOnly
 
 sequence lhcMuonBarrelOnly = {lhcMuonSeedBarrelOnly, lhcStandAloneMuonsBarrelOnly}
 
@@ -180,6 +183,7 @@ replace lhcMuonSeedEndCapsOnly.EnableDTMeasurement = false
 module lhcStandAloneMuonsEndCapsOnly = standAloneMuons from "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cfi"
 replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.RefitterParameters.EnableDTMeasurement = false
 replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.BWFilterParameters.EnableDTMeasurement = false
+replace lhcStandAloneMuonsEndCapsOnly.InputObjects = lhcMuonSeedEndCapsOnly
 
 sequence lhcMuonEndCapsOnly = {lhcMuonSeedEndCapsOnly, lhcStandAloneMuonsEndCapsOnly}
 
