@@ -187,8 +187,6 @@ replace lhcStandAloneMuonsEndCapsOnly.InputObjects = lhcMuonSeedEndCapsOnly
 
 sequence lhcMuonEndCapsOnly = {lhcMuonSeedEndCapsOnly, lhcStandAloneMuonsEndCapsOnly}
 
-sequence lhcMuonReco = {lhcMuonBarrelOnly, lhcMuonEndCapsOnly}
-
 
 # Only barrel No drift
 
@@ -232,3 +230,15 @@ sequence allmuonsNoDriftBarrelOnly = {muonsNoDriftBarrelOnly, STAMuonsNoDriftBar
 
 sequence muonrecoforcosmicsNoDriftBarrelOnly = {muontrackingforcosmicsNoDriftBarrelOnly, allmuonsNoDriftBarrelOnly}
 sequence STAmuonrecoforcosmicsNoDriftBarrelOnly = {STAmuontrackingforcosmicsNoDriftBarrelOnly, STAMuonsNoDriftBarrelOnly}
+
+
+
+sequence muonRecoAllGR =  {muonrecoforcosmics}
+sequence muonRecoBarrelGR = {muonrecoforcosmicsBarrelOnly & 
+                          muonrecoforcosmics1LegBarrelOnly &
+                          muonrecoforcosmicsNoDriftBarrelOnly}
+sequence muonRecoEndCapsGR = {muonrecoforcosmicsEndCapsOnly}
+
+sequence muonRecoLHC = {lhcMuonBarrelOnly, lhcMuonEndCapsOnly}
+
+sequence muonRecoGR = {muonRecoAllGR,muonRecoBarrelGR, muonRecoEndCapsGR, muonRecoLHC}
