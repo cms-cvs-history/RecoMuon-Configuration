@@ -207,7 +207,7 @@ module globalCosmicMuonsNoDriftBarrelOnly = globalCosmicMuons from "RecoMuon/Cos
 replace globalCosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.TkTrackCollectionLabel = "ctfWithMaterialTracksP5" 
 replace globalCosmicMuonsNoDriftBarrelOnly.MuonCollectionLabel = "cosmicMuonsNoDriftBarrelOnly" 
 
-sequence STAmuontrackingforcosmicsNoDriftBarrelOnly = {CosmicMuonSeedBarrelOnly, cosmicMuonsNoDriftBarrelOnly}
+sequence STAmuontrackingforcosmicsNoDriftBarrelOnly = {CosmicMuonSeedNoDriftBarrelOnly, cosmicMuonsNoDriftBarrelOnly}
 sequence muontrackingforcosmicsNoDriftBarrelOnly = {STAmuontrackingforcosmicsNoDriftBarrelOnly, globalCosmicMuonsNoDriftBarrelOnly}
 
 
