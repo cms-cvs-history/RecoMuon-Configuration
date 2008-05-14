@@ -39,9 +39,27 @@ block RecoMuonAOD = {
 	"keep TrackingRecHitsOwned_lhcStandAloneMuonsEndCapsOnly_*_*",
 
 # Global's tracks with extra and hits
+
+	#inclusive cosmic reco
 	"keep recoTracks_globalCosmicMuons_*_*",
 	"keep recoTrackExtras_globalCosmicMuons_*_*",
 	"keep TrackingRecHitsOwned_globalCosmicMuons_*_*",
+
+	# cosimic reco in barrel only
+        "keep recoTracks_globalCosmicMuonsBarrelOnly_*_*",	
+        "keep recoTrackExtras_globalCosmicMuonsBarrelOnly_*_*",
+        "keep TrackingRecHitsOwned_globalCosmicMuonsBarrelOnly_*_*",
+
+	# cosimic reco "1 Leg type" in barrel only
+        "keep recoTracks_globalCosmicMuons1LegBarrelOnly_*_*",
+        "keep recoTrackExtras_globalCosmicMuons1LegBarrelOnly_*_*",
+        "keep TrackingRecHitsOwned_globalCosmicMuons1LegBarrelOnly_*_*",
+
+	# cosimic reco in barrel only, based on DT no drift algo
+        "keep recoTracks_globalCosmicMuonsNoDriftBarrelOnly_*_*",
+        "keep recoTrackExtras_globalCosmicMuonsNoDriftBarrelOnly_*_*",
+        "keep TrackingRecHitsOwned_globalCosmicMuonsNoDriftBarrelOnly_*_*",
+
 # Tracker's Tracks without extra and hits
 	"keep recoTracks_ctfWithMaterialTracksP5_*_*",
 # Muon Id
