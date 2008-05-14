@@ -2,9 +2,42 @@
 block RecoMuonAOD = {
     untracked vstring outputCommands = {
 # Stand Alone's tracks with extra and hits
+
+	#inclusive cosmic reco
 	"keep recoTracks_cosmicMuons_*_*",
 	"keep recoTrackExtras_cosmicMuons_*_*",
 	"keep TrackingRecHitsOwned_cosmicMuons_*_*",
+
+	# cosimic reco in barrel only
+	"keep recoTracks_cosmicMuonsBarrelOnly_*_*",
+	"keep recoTrackExtras_cosmicMuonsBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuonsBarrelOnly_*_*",
+	
+	# cosimic reco in endcaps only
+        "keep recoTracks_cosmicMuonsEndCapsOnly_*_*",
+	"keep recoTrackExtras_cosmicMuonsEndCapsOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuonsEndCapsOnly_*_*",
+
+	# cosimic reco "1 Leg type" in barrel only
+        "keep recoTracks_cosmicMuons1LegBarrelOnly_*_*",
+	"keep recoTrackExtras_cosmicMuons1LegBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuons1LegBarrelOnly_*_*",
+
+	# cosimic reco in barrel only, based on DT no drift algo
+        "keep recoTracks_cosmicMuonsNoDriftBarrelOnly_*_*",
+	"keep recoTrackExtras_cosmicMuonsNoDriftBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuonsNoDriftBarrelOnly_*_*",
+
+	# lhc like reco in barrel only
+        "keep recoTracks_lhcStandAloneMuonsBarrelOnly_*_*",
+	"keep recoTrackExtras_lhcStandAloneMuonsBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_lhcStandAloneMuonsBarrelOnly_*_*",
+
+	# lhc like reco in endcap only
+        "keep recoTracks_lhcStandAloneMuonsEndCapsOnly_*_*",
+	"keep recoTrackExtras_lhcStandAloneMuonsEndCapsOnly_*_*",
+	"keep TrackingRecHitsOwned_lhcStandAloneMuonsEndCapsOnly_*_*",
+
 # Global's tracks with extra and hits
 	"keep recoTracks_globalCosmicMuons_*_*",
 	"keep recoTrackExtras_globalCosmicMuons_*_*",
