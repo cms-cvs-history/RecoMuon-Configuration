@@ -9,6 +9,7 @@ block RecoMuonAOD = {
 	"keep recoTracks_globalMuons_*_*",
 	"keep recoTrackExtras_globalMuons_*_*",
 	"keep TrackingRecHitsOwned_globalMuons_*_*",
+	"keep *_tevMuons_*_*",
 # Tracker's Tracks without extra and hits
 	"keep recoTracks_generalTracks_*_*",
 # Muon Id

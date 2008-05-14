@@ -12,6 +12,10 @@ include "RecoMuon/GlobalMuonProducer/data/GlobalMuonProducer.cff"
 
 sequence muontracking = {MuonSeed, standAloneMuons, globalMuons}
 
+# TeV refinement
+include "RecoMuon/GlobalMuonProducer/data/tevMuons.cfi"
+sequence muontracking_with_TeVRefinement = {muontracking,tevMuons}
+
 # Muon Id producer
 include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
 
@@ -20,7 +24,9 @@ include "RecoMuon/MuonIsolationProducers/data/muIsolation.cff"
 
 # Muon Reconstruction
 sequence muonreco = {muontracking,muonIdProducerSequence}
+sequence muonrecowith_TeVRefinemen = {muontracking_with_TeVRefinement, muonIdProducerSequence}
 
 # Muon Reconstruction plus Isolation
-sequence muonreco_plus_isolation = {muonreco,muIsolation}
+sequence muonreco_plus_isolation = {muonrecowith_TeVRefinemen, muIsolation}
+
 
