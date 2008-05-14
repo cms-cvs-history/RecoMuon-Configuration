@@ -83,7 +83,6 @@ block RecoMuonAOD = {
 	"keep recoMuons_STAMuons1LegBarrelOnly_*_*",
 	"keep recoMuons_GLBMuons1LegBarrelOnly_*_*",
 	
-	
 	# cosimic reco in barrel only, based on DT no drift algo
 	"keep recoMuons_muonsNoDriftBarrelOnly_*_*",
 	"keep recoMuons_STAMuonsNoDriftBarrelOnly_*_*",
@@ -94,8 +93,25 @@ block RecoMuonAOD = {
 # RECO content
 block RecoMuonRECO = {
     untracked vstring outputCommands = {
-	# Seed
-	"keep *_CosmicMuonSeed_*_*"
+# Seed
+	#inclusive cosmic reco
+	"keep *_CosmicMuonSeed_*_*",
+
+	# cosimic reco in barrel only
+	"keep *_CosmicMuonSeedBarrelOnly_*_*",
+	
+	# cosimic reco in endcaps only
+	"keep *_CosmicMuonSeedEndCapsOnly_*_*",
+
+	# cosimic reco in barrel only, based on DT no drift algo
+	"keep *_CosmicMuonSeedNoDriftBarrelOnly_*_*",
+
+	# lhc like reco in barrel only
+	"keep *_lhcMuonSeedBarrelOnly_*_*",
+
+	# lhc like reco in endcaps only
+	"keep *_lhcMuonSeedEndCapsOnly_*_*"
+
     }	
 }	
 replace RecoMuonRECO.outputCommands += RecoMuonAOD.outputCommands
