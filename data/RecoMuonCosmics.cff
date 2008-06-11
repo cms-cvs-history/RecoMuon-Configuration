@@ -105,9 +105,9 @@ sequence STAmuonrecoforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly,
 module CosmicMuonSeedEndCapsOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi" 
 replace CosmicMuonSeedEndCapsOnly.EnableDTMeasurement = false 
 
-module cosmicMuonsEndCapsOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
+module  cosmicMuonsEndCapsOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuonsEndCapsOnly.TrajectoryBuilderParameters.EnableDTMeasurement = false 
-replace cosmicMuonsBarrelOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Barrel = false
+replace cosmicMuonsEndCapsOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Barrel = false
 replace cosmicMuonsEndCapsOnly.MuonSeedCollectionLabel = "CosmicMuonSeedEndCapsOnly"
 
 sequence STAmuontrackingforcosmicsEnsCapsOnly = {CosmicMuonSeedEndCapsOnly, cosmicMuonsEndCapsOnly}
@@ -132,7 +132,7 @@ sequence STAmuonrecoforcosmicsEndCapsOnly = {STAmuontrackingforcosmicsEnsCapsOnl
 
 module cosmicMuons1LegBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false
-replace cosmicMuonsBarrelOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Endcap = false
+replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Endcap = false
 replace cosmicMuons1LegBarrelOnly.TrajectoryBuilderParameters.BuildTraversingMuon = true 
 replace cosmicMuons1LegBarrelOnly.MuonSeedCollectionLabel = "CosmicMuonSeedBarrelOnly"
 
@@ -200,7 +200,7 @@ replace CosmicMuonSeedNoDriftBarrelOnly.DTRecSegmentLabel = dt4DSegmentsNoDrift
 
 module cosmicMuonsNoDriftBarrelOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.EnableCSCMeasurement = false
-replace cosmicMuonsBarrelOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Endcap = false
+replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Endcap = false
 replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.BuildTraversingMuon = true 
 replace cosmicMuonsNoDriftBarrelOnly.MuonSeedCollectionLabel = "CosmicMuonSeedNoDriftBarrelOnly"
 replace cosmicMuonsNoDriftBarrelOnly.TrajectoryBuilderParameters.DTRecSegmentLabel = dt4DSegmentsNoDrift
