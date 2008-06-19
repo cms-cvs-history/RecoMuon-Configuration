@@ -174,7 +174,7 @@ module lhcMuonSeedBarrelOnly = MuonSeed from "RecoMuon/MuonSeedGenerator/data/st
 replace lhcMuonSeedBarrelOnly.EnableCSCMeasurement = false
 
 module lhcStandAloneMuonsBarrelOnly = standAloneMuons from "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cfi"
-replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.RefitterParameters.EnableCSCMeasurement = false
+#replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.RefitterParameters.EnableCSCMeasurement = false
 replace lhcStandAloneMuonsBarrelOnly.STATrajBuilderParameters.BWFilterParameters.EnableCSCMeasurement = false
 replace lhcStandAloneMuonsBarrelOnly.InputObjects = lhcMuonSeedBarrelOnly
 
@@ -184,7 +184,7 @@ module lhcMuonSeedEndCapsOnly = MuonSeed from "RecoMuon/MuonSeedGenerator/data/s
 replace lhcMuonSeedEndCapsOnly.EnableDTMeasurement = false
 
 module lhcStandAloneMuonsEndCapsOnly = standAloneMuons from "RecoMuon/StandAloneMuonProducer/data/standAloneMuons.cfi"
-replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.RefitterParameters.EnableDTMeasurement = false
+#replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.RefitterParameters.EnableDTMeasurement = false
 replace lhcStandAloneMuonsEndCapsOnly.STATrajBuilderParameters.BWFilterParameters.EnableDTMeasurement = false
 replace lhcStandAloneMuonsEndCapsOnly.InputObjects = lhcMuonSeedEndCapsOnly
 
