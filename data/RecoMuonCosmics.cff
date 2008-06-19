@@ -105,7 +105,7 @@ sequence STAmuonrecoforcosmicsBarrelOnly = {STAmuontrackingforcosmicsBarrelOnly,
 module CosmicMuonSeedEndCapsOnly = CosmicMuonSeed from "RecoMuon/MuonSeedGenerator/data/CosmicMuonSeedProducer.cfi" 
 replace CosmicMuonSeedEndCapsOnly.EnableDTMeasurement = false 
 
-module  cosmicMuonsEndCapsOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
+module cosmicMuonsEndCapsOnly = cosmicMuons from "RecoMuon/CosmicMuonProducer/data/cosmicMuons.cfi"
 replace cosmicMuonsEndCapsOnly.TrajectoryBuilderParameters.EnableDTMeasurement = false 
 replace cosmicMuonsEndCapsOnly.TrajectoryBuilderParameters.MuonNavigationParameters.Barrel = false
 replace cosmicMuonsEndCapsOnly.MuonSeedCollectionLabel = "CosmicMuonSeedEndCapsOnly"
