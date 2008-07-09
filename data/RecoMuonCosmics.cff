@@ -22,21 +22,33 @@ include "RecoMuon/MuonIdentification/data/muonIdProducerSequence.cff"
 replace muons.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons, cosmicMuons}
 replace muons.inputCollectionTypes = { "inner tracks","links", "outer tracks"}
 replace muons.fillIsolation = false
+replace muons.minPt = 0.
+replace muons.minP = 0.
+
 
 module STAMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace STAMuons.inputCollectionLabels = {cosmicMuons}
 replace STAMuons.inputCollectionTypes = {"outer tracks"}
 replace STAMuons.fillIsolation = false
+replace STAMuons.minPt = 0.
+replace STAMuons.minP = 0.
+
 
 module TKMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace TKMuons.inputCollectionLabels = {ctfWithMaterialTracksP5}
 replace TKMuons.inputCollectionTypes = { "inner tracks"}
 replace TKMuons.fillIsolation = false
+replace TKMuons.minPt = 0.
+replace TKMuons.minP = 0.
+
 
 module GLBMuons = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace GLBMuons.inputCollectionLabels = {globalCosmicMuons}
 replace GLBMuons.inputCollectionTypes = {"links"}
 replace GLBMuons.fillIsolation = false
+replace GLBMuons.minPt = 0.
+replace GLBMuons.minP = 0.
+
 
 sequence allmuons = {muons,STAMuons,TKMuons,GLBMuons}
 
@@ -79,17 +91,23 @@ module STAMuonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.c
 replace STAMuonsBarrelOnly.inputCollectionLabels = {cosmicMuonsBarrelOnly}
 replace STAMuonsBarrelOnly.inputCollectionTypes = {"outer tracks"}
 replace STAMuonsBarrelOnly.fillIsolation = false
-
+replace STAMuonsBarrelOnly.minPt = 0.
+replace STAMuonsBarrelOnly.minP = 0.
 
 module GLBMuonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace GLBMuonsBarrelOnly.inputCollectionLabels = {globalCosmicMuonsBarrelOnly}
 replace GLBMuonsBarrelOnly.inputCollectionTypes = {"links"}
 replace GLBMuonsBarrelOnly.fillIsolation = false
+replace GLBMuonsBarrelOnly.minPt = 0.
+replace GLBMuonsBarrelOnly.minP = 0.
+
 
 module muonsBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace muonsBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuonsBarrelOnly, cosmicMuonsBarrelOnly}
 replace muonsBarrelOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
 replace muonsBarrelOnly.fillIsolation = false
+replace muonsBarrelOnly.minPt = 0.
+replace muonsBarrelOnly.minP = 0.
 
 
 sequence allmuonsBarrelOnly = {muonsBarrelOnly, STAMuonsBarrelOnly, GLBMuonsBarrelOnly}
@@ -116,6 +134,8 @@ module STAMuonsEndCapsOnly = muons from "RecoMuon/MuonIdentification/data/muons.
 replace STAMuonsEndCapsOnly.inputCollectionLabels = {cosmicMuonsEndCapsOnly}
 replace STAMuonsEndCapsOnly.inputCollectionTypes = {"outer tracks"}
 replace STAMuonsEndCapsOnly.fillIsolation = false
+replace STAMuonsEndCapsOnly.minPt = 0.
+replace STAMuonsEndCapsOnly.minP = 0.
 
 
 
@@ -145,17 +165,23 @@ module STAMuons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muo
 replace STAMuons1LegBarrelOnly.inputCollectionLabels = {cosmicMuons1LegBarrelOnly}
 replace STAMuons1LegBarrelOnly.inputCollectionTypes = {"outer tracks"}
 replace STAMuons1LegBarrelOnly.fillIsolation = false
-
+replace STAMuons1LegBarrelOnly.minPt = 0.
+replace STAMuons1LegBarrelOnly.minP = 0.
 
 module GLBMuons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace GLBMuons1LegBarrelOnly.inputCollectionLabels = {globalCosmicMuons1LegBarrelOnly}
 replace GLBMuons1LegBarrelOnly.inputCollectionTypes = {"links"}
 replace GLBMuons1LegBarrelOnly.fillIsolation = false
+replace GLBMuons1LegBarrelOnly.minPt = 0.
+replace GLBMuons1LegBarrelOnly.minP = 0.
+
 
 module muons1LegBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace muons1LegBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuons1LegBarrelOnly, cosmicMuons1LegBarrelOnly}
 replace muons1LegBarrelOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
 replace muons1LegBarrelOnly.fillIsolation = false
+replace muons1LegBarrelOnly.minPt = 0.
+replace muons1LegBarrelOnly.minP = 0.
 
 
 sequence allmuons1LegBarrelOnly = {muons1LegBarrelOnly, STAMuons1LegBarrelOnly, GLBMuons1LegBarrelOnly}
@@ -213,17 +239,24 @@ module STAMuonsNoDriftBarrelOnly = muons from "RecoMuon/MuonIdentification/data/
 replace STAMuonsNoDriftBarrelOnly.inputCollectionLabels = {cosmicMuonsNoDriftBarrelOnly}
 replace STAMuonsNoDriftBarrelOnly.inputCollectionTypes = {"outer tracks"}
 replace STAMuonsNoDriftBarrelOnly.fillIsolation = false
+replace STAMuonsNoDriftBarrelOnly.minPt = 0.
+replace STAMuonsNoDriftBarrelOnly.minP = 0.
 
 
 module GLBMuonsNoDriftBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace GLBMuonsNoDriftBarrelOnly.inputCollectionLabels = {globalCosmicMuonsNoDriftBarrelOnly}
 replace GLBMuonsNoDriftBarrelOnly.inputCollectionTypes = {"links"}
 replace GLBMuonsNoDriftBarrelOnly.fillIsolation = false
+replace GLBMuonsNoDriftBarrelOnly.minPt = 0.
+replace GLBMuonsNoDriftBarrelOnly.minP = 0.
+
 
 module muonsNoDriftBarrelOnly = muons from "RecoMuon/MuonIdentification/data/muons.cfi"
 replace muonsNoDriftBarrelOnly.inputCollectionLabels = {ctfWithMaterialTracksP5, globalCosmicMuonsNoDriftBarrelOnly, cosmicMuonsNoDriftBarrelOnly}
 replace muonsNoDriftBarrelOnly.inputCollectionTypes = { "inner tracks", "links", "outer tracks"}
 replace muonsNoDriftBarrelOnly.fillIsolation = false
+replace muonsNoDriftBarrelOnly.minPt = 0.
+replace muonsNoDriftBarrelOnly.minP = 0.
 
 
 sequence allmuonsNoDriftBarrelOnly = {muonsNoDriftBarrelOnly, STAMuonsNoDriftBarrelOnly, GLBMuonsNoDriftBarrelOnly}
