@@ -2,28 +2,116 @@
 block RecoMuonAOD = {
     untracked vstring outputCommands = {
 # Stand Alone's tracks with extra and hits
+
+	#inclusive cosmic reco
 	"keep recoTracks_cosmicMuons_*_*",
 	"keep recoTrackExtras_cosmicMuons_*_*",
 	"keep TrackingRecHitsOwned_cosmicMuons_*_*",
+
+	# cosimic reco in barrel only
+	"keep recoTracks_cosmicMuonsBarrelOnly_*_*",
+	"keep recoTrackExtras_cosmicMuonsBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuonsBarrelOnly_*_*",
+	
+	# cosimic reco in endcaps only
+        "keep recoTracks_cosmicMuonsEndCapsOnly_*_*",
+	"keep recoTrackExtras_cosmicMuonsEndCapsOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuonsEndCapsOnly_*_*",
+
+	# cosimic reco "1 Leg type" in barrel only
+        "keep recoTracks_cosmicMuons1LegBarrelOnly_*_*",
+	"keep recoTrackExtras_cosmicMuons1LegBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuons1LegBarrelOnly_*_*",
+
+	# cosimic reco in barrel only, based on DT no drift algo
+        "keep recoTracks_cosmicMuonsNoDriftBarrelOnly_*_*",
+	"keep recoTrackExtras_cosmicMuonsNoDriftBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_cosmicMuonsNoDriftBarrelOnly_*_*",
+
+	# lhc like reco in barrel only
+        "keep recoTracks_lhcStandAloneMuonsBarrelOnly_*_*",
+	"keep recoTrackExtras_lhcStandAloneMuonsBarrelOnly_*_*",
+	"keep TrackingRecHitsOwned_lhcStandAloneMuonsBarrelOnly_*_*",
+
+	# lhc like reco in endcap only
+        "keep recoTracks_lhcStandAloneMuonsEndCapsOnly_*_*",
+	"keep recoTrackExtras_lhcStandAloneMuonsEndCapsOnly_*_*",
+	"keep TrackingRecHitsOwned_lhcStandAloneMuonsEndCapsOnly_*_*",
+
 # Global's tracks with extra and hits
+
+	#inclusive cosmic reco
 	"keep recoTracks_globalCosmicMuons_*_*",
 	"keep recoTrackExtras_globalCosmicMuons_*_*",
 	"keep TrackingRecHitsOwned_globalCosmicMuons_*_*",
+
+	# cosimic reco in barrel only
+        "keep recoTracks_globalCosmicMuonsBarrelOnly_*_*",	
+        "keep recoTrackExtras_globalCosmicMuonsBarrelOnly_*_*",
+        "keep TrackingRecHitsOwned_globalCosmicMuonsBarrelOnly_*_*",
+
+	# cosimic reco "1 Leg type" in barrel only
+        "keep recoTracks_globalCosmicMuons1LegBarrelOnly_*_*",
+        "keep recoTrackExtras_globalCosmicMuons1LegBarrelOnly_*_*",
+        "keep TrackingRecHitsOwned_globalCosmicMuons1LegBarrelOnly_*_*",
+
+	# cosimic reco in barrel only, based on DT no drift algo
+        "keep recoTracks_globalCosmicMuonsNoDriftBarrelOnly_*_*",
+        "keep recoTrackExtras_globalCosmicMuonsNoDriftBarrelOnly_*_*",
+        "keep TrackingRecHitsOwned_globalCosmicMuonsNoDriftBarrelOnly_*_*",
+
 # Tracker's Tracks without extra and hits
 	"keep recoTracks_ctfWithMaterialTracksP5_*_*",
 # Muon Id
+	
+	#inclusive cosmic reco
+	"keep recoMuons_muons_*_*",
 	"keep recoMuons_STAMuons_*_*",
 	"keep recoMuons_TKMuons_*_*",
 	"keep recoMuons_GLBMuons_*_*",
-	"keep recoMuons_muons_*_*"
+
+	# cosimic reco in barrel only
+	"keep recoMuons_muonsBarrelOnly_*_*",
+	"keep recoMuons_STAMuonsBarrelOnly_*_*",
+	"keep recoMuons_GLBMuonsBarrelOnly_*_*",
+
+	# cosimic reco in endcaps only
+	"keep recoMuons_STAMuonsEndCapsOnly_*_*",
+
+	# cosimic reco "1 Leg type" in barrel only
+	"keep recoMuons_muons1LegBarrelOnly_*_*",
+	"keep recoMuons_STAMuons1LegBarrelOnly_*_*",
+	"keep recoMuons_GLBMuons1LegBarrelOnly_*_*",
+	
+	# cosimic reco in barrel only, based on DT no drift algo
+	"keep recoMuons_muonsNoDriftBarrelOnly_*_*",
+	"keep recoMuons_STAMuonsNoDriftBarrelOnly_*_*",
+	"keep recoMuons_GLBMuonsNoDriftBarrelOnly_*_*"
     }
 }
 
 # RECO content
 block RecoMuonRECO = {
     untracked vstring outputCommands = {
-	# Seed
-	"keep *_CosmicMuonSeed_*_*"
+# Seed
+	#inclusive cosmic reco
+	"keep *_CosmicMuonSeed_*_*",
+
+	# cosimic reco in barrel only
+	"keep *_CosmicMuonSeedBarrelOnly_*_*",
+	
+	# cosimic reco in endcaps only
+	"keep *_CosmicMuonSeedEndCapsOnly_*_*",
+
+	# cosimic reco in barrel only, based on DT no drift algo
+	"keep *_CosmicMuonSeedNoDriftBarrelOnly_*_*",
+
+	# lhc like reco in barrel only
+	"keep *_lhcMuonSeedBarrelOnly_*_*",
+
+	# lhc like reco in endcaps only
+	"keep *_lhcMuonSeedEndCapsOnly_*_*"
+
     }	
 }	
 replace RecoMuonRECO.outputCommands += RecoMuonAOD.outputCommands
