@@ -1,19 +1,24 @@
 # AOD content
 block RecoMuonAOD = {
     untracked vstring outputCommands = {
+
 # Stand Alone's tracks with extra and hits
 	"keep recoTracks_standAloneMuons_*_*",
 	"keep recoTrackExtras_standAloneMuons_*_*",
 	"keep TrackingRecHitsOwned_standAloneMuons_*_*",
+
 # Global's tracks with extra and hits
 	"keep recoTracks_globalMuons_*_*",
 	"keep recoTrackExtras_globalMuons_*_*",
-	"keep TrackingRecHitsOwned_globalMuons_*_*",
-	"keep *_tevMuons_*_*",
+
+# TeV muons products
+	"keep recoTracks_tevMuons_*_*",
+	"keep recoTrackExtras_tevMuons_*_*",
+	"keep recoTracksToOnerecoTracksAssociation_tevMuons_*_*",
+
 # Tracker's Tracks without extra and hits
 	"keep recoTracks_generalTracks_*_*",
 # Muon Id
-	"keep recoMuons_trackerMuons_*_*",
 	"keep recoMuons_muons_*_*",
 	"keep recoCaloMuons_calomuons_*_*"
     }
@@ -23,7 +28,13 @@ block RecoMuonAOD = {
 block RecoMuonRECO = {
     untracked vstring outputCommands = {
 	# Seed
-	"keep *_MuonSeed_*_*"
+	"keep *_MuonSeed_*_*",
+	
+	# Global's tracks with extra and hits
+	"keep TrackingRecHitsOwned_globalMuons_*_*",
+
+	# TeV muons products
+	"keep TrackingRecHitsOwned_tevMuons_*_*"
     }	
 }	
 replace RecoMuonRECO.outputCommands += RecoMuonAOD.outputCommands
