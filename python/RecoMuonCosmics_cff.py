@@ -21,6 +21,9 @@ muons.inputCollectionLabels = ['ctfWithMaterialTracksP5LHCNavigation', 'globalCo
 muons.inputCollectionTypes = ['inner tracks', 'links', 'outer tracks']
 muons.fillIsolation = False
 
+from RecoMuon.MuonIdentification.calomuons_cfi import *
+calomuons.inputTracks = 'ctfWithMaterialTracksP5LHCNavigation'
+
 ## Sequences
 
 # Stand Alone Tracking
@@ -32,7 +35,7 @@ STAmuonrecoforcosmics = cms.Sequence(STAmuontrackingforcosmics)
 muontrackingforcosmics = cms.Sequence(STAmuontrackingforcosmics*globalCosmicMuons)
 
 # all muons id
-allmuons = cms.Sequence(muons)
+allmuons = cms.Sequence(muons*calomuons)
 
 # Final sequence
 muonrecoforcosmics = cms.Sequence(muontrackingforcosmics*allmuons)
